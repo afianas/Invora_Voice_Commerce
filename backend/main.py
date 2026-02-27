@@ -33,7 +33,7 @@ async def process_audio(file: UploadFile = File(...)):
 
     try:
         # Whisper ASR
-        transcript = speech_to_text(temp_filename, language="ml")
+        transcript = speech_to_text(temp_filename)
 
         # Your NLP layer
         parsed_data = parse_inventory_command(transcript)

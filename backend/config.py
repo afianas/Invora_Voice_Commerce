@@ -2,6 +2,7 @@
 
 # ================= PRODUCTS =================
 
+FUZZY_THRESHOLD = 60
 PRODUCTS = {
     "Sugar": [
         "sugar", "panchasara", "panjasara", "പഞ്ചസാര",
@@ -34,10 +35,6 @@ PRODUCTS = {
     "Dal": [
         "dal", "parippu", "പരിപ്പ്",
         "दाल"
-    ],
-    "Tea": [
-        "tea", "chaaya", "ചായ",
-        "chai", "चाय"
     ]
 }
 
@@ -83,6 +80,6 @@ ACTIONS = {
         "हटा", "हटाओ",
         "निकाल", "निकालो",
         "hatado", "hatao",
-        "nikal", "nikalo", "nikaldo", "nikal do"
+        "nikal", "nikalo", "nikaaldo", "nikaal do", "nikaaldo","nikaaloh"
     ]
 }
