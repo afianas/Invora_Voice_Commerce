@@ -46,7 +46,7 @@ export default function App() {
   ]);
   const [transactions, setTransactions] = useState([]);
   const [totals, setTotals] = useState({ revenue: 0 });
-  const [recording, setRecording] = useState();
+  const [recording, setRecording] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [transcript, setTranscript] = useState("");
   const [productData, setProductData] = useState({ name: '', qty: '', price: '', id: '' });
@@ -78,27 +78,98 @@ export default function App() {
     setInventory(prev => prev.map(item => item.id === itemId ? { ...item, price: newPrice } : item));
   };
 
-  async function startRecording() {
-    try {
-      const { status } = await Audio.requestPermissionsAsync();
-      if (status !== 'granted') return;
-      await Audio.setAudioModeAsync({ allowsRecordingIOS: true, playsInSilentModeIOS: true });
-      const { recording } = await Audio.Recording.createAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
-      setRecording(recording);
-    } catch (err) { console.error(err); }
-  }
+ async function startRecording() {
+  try {
+    console.log("Requesting permission...");
+    const { status } = await Audio.requestPermissionsAsync();
+    if (status !== "granted") {
+      alert("Permission required!");
+      return;
+    }
 
-  async function stopRecording() {
+    await Audio.setAudioModeAsync({
+      allowsRecordingIOS: true,
+      playsInSilentModeIOS: true,
+      staysActiveInBackground: false,
+    });
+
+    const recording = new Audio.Recording();
+
+    await recording.prepareToRecordAsync(
+      Audio.RecordingOptionsPresets.HIGH_QUALITY
+    );
+
+    await recording.startAsync();
+    console.log("Recording started");
+
+    setRecording(recording);
+
+  } catch (err) {
+    console.error("Start error:", err);
+  }
+}
+async function stopRecording() {
+  try {
     if (!recording) return;
-    setRecording(undefined);
-    await recording.stopAndUnloadAsync();
-    setTimeout(() => {
-      setTranscript(t.sold);
-      setProductData({ name: t.items.sugar, qty: '-10', price: '42', id: 'sugar' });
-      setModalVisible(true);
-    }, 800);
-  }
 
+    console.log("Stopping recording...");
+    await recording.stopAndUnloadAsync();
+
+    const uri = recording.getURI();
+    console.log("Audio URI:", uri);
+
+    setRecording(null);
+
+    // 🔥 CREATE FORM DATA
+    const formData = new FormData();
+    formData.append("file", {
+      uri: uri,
+      name: "audio.m4a",
+      type: "audio/m4a",
+    });
+
+    // Convert UI language to Whisper language code
+const languageMap = {
+  EN: "en",
+  हिं: "hi",
+  ത: "ml"
+};
+
+formData.append("language", languageMap[lang] || "en");
+
+    console.log("Sending to backend...");
+
+    // 🔥 SEND TO NGROK URL
+  const response = await fetch(
+  "https://cherly-rebellious-fructiferously.ngrok-free.dev/process-audio",
+  {
+    method: "POST",
+    body: formData,
+  }
+);
+const data = await response.json();
+console.log("RAW RESPONSE:", data);
+    // 🔥 UPDATE UI
+    setTranscript(data.transcript);
+
+    if (data.parsed.product && data.parsed.quantity) {
+      setProductData({
+        id: data.parsed.product.toLowerCase(),
+        qty:
+          data.parsed.action === "REMOVE"
+            ? `-${data.parsed.quantity}`
+            : `${data.parsed.quantity}`,
+        price: "",
+        name: data.parsed.product,
+      });
+
+      setModalVisible(true);
+    }
+
+  } catch (err) {
+    console.error("Error:", err);
+  }
+}
   return (
     <View style={styles.container}>
       <Header t={t} revenue={totals.revenue} lang={lang} setLang={setLang} />

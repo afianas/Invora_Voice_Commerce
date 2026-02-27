@@ -2,13 +2,11 @@
 
 import whisper
 
-# Load once globally (VERY IMPORTANT)
-model = whisper.load_model("small")  # use "small" model
+model = whisper.load_model("small")
 
-def speech_to_text(audio_file_path):
+def speech_to_text(file_path, language="en"):
     result = model.transcribe(
-        audio_file_path,
-        fp16=False,
-        temperature=0.0
+        file_path,
+        language=language
     )
     return result["text"]

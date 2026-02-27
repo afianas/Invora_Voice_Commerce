@@ -9,7 +9,10 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+       "android": {
+      "permissions": ["RECORD_AUDIO"]
+    }
     },
     "ios": {
       "supportsTablet": true

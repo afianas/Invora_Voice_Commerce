@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Form
 from backend.nlp_engine import parse_inventory_command
 from backend.whisper_service import speech_to_text
 import os
@@ -9,6 +9,18 @@ app = FastAPI()
 @app.get("/")
 def home():
     return {"status": "Multilingual NLP Backend Running"}
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 
 from pydantic import BaseModel
 
@@ -23,8 +35,13 @@ def parse_text(request: CommandRequest):
         "parsed": result
     }
 
+from fastapi import UploadFile, File, Form
+
 @app.post("/process-audio")
-async def process_audio(file: UploadFile = File(...)):
+async def process_audio(
+    file: UploadFile = File(...),
+    language: str = Form("en")
+):
 
     temp_filename = f"temp_{file.filename}"
 
@@ -33,7 +50,7 @@ async def process_audio(file: UploadFile = File(...)):
 
     try:
         # Whisper ASR
-        transcript = speech_to_text(temp_filename)
+        transcript = speech_to_text(temp_filename,language)
 
         # Your NLP layer
         parsed_data = parse_inventory_command(transcript)
