@@ -59,8 +59,7 @@ Invora solves this by combining:
 
 ### ☁ Deployment
 
-* Render (Backend Hosting)
-* EAS Build (APK Generation)
+APK Rendering
 
 ---
 
@@ -109,7 +108,7 @@ Automatically becomes:
 }
 ```
 
-If rule-based parsing confidence is low → Gemini fallback activates.
+
 
 ---
 
@@ -156,9 +155,6 @@ Category A, B, C items are highlighted in dashboard.
 ## 6️⃣ Financial & AI Insights
 
 * Real-time revenue tracking
-* Profit calculation
-* Most sold vs most profitable comparison
-* Smart reorder alerts (future scope)
 
 ---
 
@@ -175,8 +171,6 @@ Category A, B, C items are highlighted in dashboard.
 ### ➖ Remove / Sell Stock
 
 * “Remove 3 kg rice”
-* “Sell 5 litres oil”
-* “Delete 2 packets salt”
 
 ---
 
@@ -185,13 +179,10 @@ Category A, B, C items are highlighted in dashboard.
 ### ➕ Add
 
 * “5 kilo chini jodo”
-* “10 litre doodh add karo”
-* “20 packet biscuit daalo”
 
 ### ➖ Remove
 
 * “5 kilo chawal nikaal do”
-* “3 litre tel bech do”
 * “2 packet namak hatao”
 
 ---
@@ -313,39 +304,15 @@ invora/
 
 # 🧭 App Flow Diagram
 
-```
-User Voice
-   ↓
-ASR (Whisper)
-   ↓
-NLP Engine
-   ↓
-Gemini Fallback (if low confidence)
-   ↓
-Verification Modal
-   ↓
-Inventory Update
-   ↓
-ABC Analysis
-```
+<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/269840ac-90e8-46ea-8a68-0f74a86e19fe" />
+
 
 ---
 
 # 🏗 Architecture Diagram
 
 ```
-Mobile App (React Native)
-        ↓
-Public Backend (FastAPI)
-        ↓
-ASR (Whisper)
-        ↓
-Rule-Based NLP
-        ↓
-Gemini LLM (Fallback)
-        ↓
-Inventory Database (In-Memory / Future DB)
-```
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/3913e15c-8071-448d-afcb-7812fb684275" />
 
 ---
 
@@ -369,14 +336,13 @@ Add at least:
 # 👥 Team Members
 
 * Afia Nasumudeen – NLP & Backend
-* [Add teammates]
+* Akshara C A - Frontend 
 
 ---
 
 # 🤖 AI Tools Used
 
 * Whisper (Speech Recognition)
-* Gemini LLM (Fallback extraction)
 * Prompt Engineering for structured output
 * ChatGPT for development support
 
