@@ -5,6 +5,8 @@ from backend.whisper_service import speech_to_text
 import os
 import shutil
 app = FastAPI()
+# Replace this with the actual path to your ffmpeg/bin folder
+os.environ["PATH"] += os.pathsep + r'C:\ffmpeg\bin'
 
 @app.get("/")
 def home():

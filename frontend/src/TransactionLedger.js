@@ -2,27 +2,35 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { globalStyles, theme } from '../src/styles/globalStyles';
 
-export default function TransactionLedger({ t, transactions, itemMap }) {
+export default function TransactionLedger({ t, transactions }) {
     return (
         <View style={globalStyles.card}>
             {transactions.length === 0 ? (
                 <Text style={styles.emptyText}>{t.empty}</Text>
             ) : (
                 transactions.map(tLog => {
-                    // Identify the type dynamically based on the stored key
                     const isStockIn = tLog.typeKey === 'IN';
                     const translatedLabel = isStockIn ? t.stockIn : t.stockOut;
 
+                    // 1. Get the ID and make it lowercase (e.g., "Oil" -> "oil")
+                    const lookupId = tLog.itemId ? tLog.itemId.toLowerCase().trim() : "";
+                    // Inside TransactionLedger.js map function:
+
+                    const displayName = (t.items && t.items[lookupId])
+                        ? t.items[lookupId]
+                        : tLog.itemId;
+
+                    // This is the fix: It looks up the itemId in the current language's item list
+                    // We lowercase it to ensure "Sugar" matches "sugar"
+
                     return (
                         <View key={tLog.id} style={styles.transRow}>
-                            {/* Color dot updates based on type */}
                             <View style={[styles.dot, { backgroundColor: isStockIn ? theme.success : theme.danger }]} />
 
                             <View style={{ flex: 1 }}>
                                 <Text style={styles.transName}>
-                                    {itemMap[tLog.itemId] || tLog.itemId}
+                                    {displayName}
                                 </Text>
-                                {/* This text now reacts to lang change! */}
                                 <Text style={styles.transType}>{translatedLabel}</Text>
                             </View>
 
