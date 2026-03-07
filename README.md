@@ -343,7 +343,7 @@ https://drive.google.com/file/d/19N4Rm2TWIm_VSkBs0wgSCTwNRzbMutI1/view?usp=drive
 
 # 👥 Team Members
 
-* Afia Nasumudeen – NLP & Backend
+* Afia Nasumudeen – Backend, Frontend-Backend Integration
 * Akshara C A - Frontend 
 
 ---
@@ -351,8 +351,6 @@ https://drive.google.com/file/d/19N4Rm2TWIm_VSkBs0wgSCTwNRzbMutI1/view?usp=drive
 # 🤖 AI Tools Used
 
 * Whisper (Speech Recognition)
-* Prompt Engineering for structured output
-* ChatGPT for development support
 
 ---
 
