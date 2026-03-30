@@ -316,19 +316,18 @@ ibhashini_voice_commerce/
 ```
 
 ---
-
 # 🧭 App Flow Diagram
 
-<img width="1024" height="1536" alt="image" src="https://github.com/user-attachments/assets/269840ac-90e8-46ea-8a68-0f74a86e19fe" />
-
+<div align="center">
+  <img width="400" alt="App Flow Diagram" src="https://github.com/user-attachments/assets/269840ac-90e8-46ea-8a68-0f74a86e19fe" />
+</div>
 
 ---
-
 # 🏗 Architecture Diagram
 
-
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/3913e15c-8071-448d-afcb-7812fb684275" />
-
+<div align="center">
+  <img width="600" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/3913e15c-8071-448d-afcb-7812fb684275" />
+</div>
 
 # 🎥 Demo Video
 https://drive.google.com/file/d/19N4Rm2TWIm_VSkBs0wgSCTwNRzbMutI1/view?usp=drivesdk
@@ -336,10 +335,21 @@ https://drive.google.com/file/d/19N4Rm2TWIm_VSkBs0wgSCTwNRzbMutI1/view?usp=drive
 
 # 📸 Screenshots
 
-<img width="716" height="1600" alt="image" src="https://github.com/user-attachments/assets/db9c6485-5897-465a-85dd-a28cd1fcd68a" />
-<img width="716" height="1600" alt="image" src="https://github.com/user-attachments/assets/645cab12-9533-414c-ae22-7fbdfa938cb3" />
-<img width="716" height="1600" alt="image" src="https://github.com/user-attachments/assets/6dc23811-cf96-4be1-939d-ccbe75b8cd3a" />
-
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img width="220" alt="Screenshot 1" src="https://github.com/user-attachments/assets/db9c6485-5897-465a-85dd-a28cd1fcd68a" />
+      </td>
+      <td align="center">
+        <img width="220" alt="Screenshot 2" src="https://github.com/user-attachments/assets/645cab12-9533-414c-ae22-7fbdfa938cb3" />
+      </td>
+      <td align="center">
+        <img width="220" alt="Screenshot 3" src="https://github.com/user-attachments/assets/6dc23811-cf96-4be1-939d-ccbe75b8cd3a" />
+      </td>
+    </tr>
+  </table>
+</div>
 
 # 👥 Team Members
 
