@@ -29,7 +29,7 @@ graph TD
     D -->|Extracted Entities| B
     B -->|JSON Response| A
     A --> E{Verification Loop}
-    E -->|User Approval| F[Local State / Future: MongoDB]
+    E -->|User Approval| F[Future: Mongo DB]
 ```
 
 ---
@@ -156,9 +156,6 @@ eas build -p android --profile preview
 ---
 
 ## 👥 Team Members
-* Afia Nasumudeen – Backend, Frontend-Backend Integration
-* Akshara C A - Frontend 
-
 * **Afia Nasumudeen** – Backend & Frontend-Backend Integration
 * **Akshara C A** – Frontend Development
 
