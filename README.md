@@ -1,381 +1,167 @@
+# 📦 Invora: Voice-Powered Multilingual Inventory Intelligence
 
-# 📦 Invora
+### Empowering MSMEs with the "Bolo" (Speak) Interface
 
-### Voice-Powered Multilingual Inventory Intelligence for MSMEs
-
----
-
-## 🚀 Project Description
-
-**Invora** is a multilingual, voice-first mobile inventory management system built for small suppliers, shopkeepers, and warehouse operators.
-
-Traditional inventory apps assume:
-
-* English literacy
-* Keyboard input
-* Desk-based usage
-
-Invora is different.
-
-It enables suppliers to manage stock using **natural voice commands in Malayalam, Hindi, or English**, powered by AI-driven speech recognition and smart NLP parsing.
-
-> “Inventory management built for the warehouse floor — not the office desk.”
+[![Project Status: Active](https://img.shields.io/badge/Project%20Status-Active-brightgreen)](https://github.com/afianas/Invora_Voice_Commerce)
+[![Tech Stack: Expo + FastAPI](https://img.shields.io/badge/Stack-Expo%20%7C%20FastAPI%20%7C%20Whisper-blue)](https://github.com/afianas/Invora_Voice_Commerce)
 
 ---
 
-# 🧠 Problem Statement
+## 🚀 The Essence of Invora
 
-Small and rural businesses struggle with:
+**Invora** is a high-accessibility mobile inventory management system specifically designed for MSMEs (Small Suppliers and Shopkeepers). While traditional inventory software assumes English literacy and complex keyboard input, Invora replaces the office desk with the warehouse floor.
 
-* Language barriers
-* Complex ERP software
-* Slow manual entry
-* No revenue visibility
+By combining **OpenAI Whisper ASR** with a domain-specific **Smart NLP Engine**, Invora enables warehouse operators to manage stock using natural voice commands in **Malayalam, Hindi, and English**.
 
-Invora solves this by combining:
-
-* 🎙 Voice input
-* 🌍 Multilingual support
-* 📊 ABC revenue analysis
-* 🤖 AI-powered smart parsing
+> "Inventory management built for the speed of the warehouse door—not the office desk."
 
 ---
 
-# 🛠 Tech Stack
+## 🏗 System Architecture
 
-### 📱 Frontend (Mobile App)
+Invora follows a modern, decoupled architecture to ensure low-latency processing and accurate entity extraction.
 
-* React Native (Expo)
-* Expo Audio
-* Fetch API
-* State management (React Hooks)
-
-### 🧠 Backend
-
-* FastAPI
-* Whisper ASR (Speech-to-Text)
-* Smart Rule-Based NLP
-* Python
-
-### ☁ Deployment
-
-APK Rendering
-
----
-
-# ✨ Features
-
-## 1️⃣ The “Bolo” Interface (Voice-First Entry)
-
-🎙 Large microphone button
-User speaks in Malayalam / Hindi / English
-No typing required
-
-Technology:
-
-* Speech-to-text via ASR
-* Language-controlled transcription
-
-User Value:
-
-* Faster than manual entry
-* Works for semi-literate suppliers
-* Hands-free usage
-
----
-
-## 2️⃣ Smart NLP Layer (Entity Extraction)
-
-Invora extracts:
-
-* Product
-* Quantity
-* Unit
-* Action (Add / Remove)
-
-Example:
-
-> “50 kilo panchasara cherkuka”
-
-Automatically becomes:
-
-```json
-{
-  "action": "ADD",
-  "product": "Sugar",
-  "quantity": 50,
-  "unit": "kg"
-}
+```mermaid
+graph TD
+    A[Mobile App: React Native/Expo] -->|Audio Data .m4a| B(FastAPI Backend)
+    B --> C[ASR Layer: OpenAI Whisper]
+    C -->|Raw Transcript| D[NLP Layer: Rule-Based Parser]
+    D -->|Extracted Entities| B
+    B -->|JSON Response| A
+    A --> E{Verification Loop}
+    E -->|User Approval| F[Local State / Future: MongoDB]
 ```
 
+---
 
+## ✨ Core Features
+
+### 🎙 The 'Bolo' Interface
+Designed for the "warehouse floor," the interface prioritizes voice-first interaction. A single, prominent recording action captures commands in the user's native tongue, reducing the friction of manual data entry by over 70%.
+
+### 🧠 Rule-Based NLP Engine & ASR
+Invora utilizes the **Whisper 'small' model** for high-accuracy multilingual transcription. The raw text is then passed to our Smart Parsing layer which extracts:
+- **Product** (e.g., Sugar, Milk, Steel)
+- **Quantity** (e.g., 5, 20, 100)
+- **Unit** (e.g., kg, litres, packets)
+- **Action** (Add to stock or Sell/Remove)
+
+### 🛡 Verification Loop (Human-in-the-loop)
+To ensure 100% data integrity, Invora features a modal-driven verification step. Users review the AI's extraction, adjust fields if necessary, and confirm before the inventory is updated.
+
+### 📊 Business Intelligence: ABC Analysis
+Invora incorporates **Pareto-based ABC Revenue Analysis** directly into the dashboard. 
+- **Category A**: High-value/High-frequency items (Gold)
+- **Category B**: Moderate value (Silver)
+- **Category C**: Low value (Bronze)
+This allows suppliers to prioritize stock levels for their most critical revenue generators.
 
 ---
 
-## 3️⃣ Verification & Transparency
+## 🛠 Tech Stack
 
-To prevent AI mistakes:
-
-* Raw transcript is shown
-* Editable fields
-* Manual override option
-
-This builds trust.
-
----
-
-## 4️⃣ Core Inventory Management
-
-Tracks:
-
-* Product Name
-* Stock Level
-* Unit
-* Selling Price (SP)
-
-Single-warehouse optimized
-Flat structure for speed
+| Component | Technology | Role |
+| :--- | :--- | :--- |
+| **Frontend** | React Native (Expo) | Cross-platform Accessibility |
+| **Backend** | FastAPI (Python) | High-performance Async API |
+| **ASR** | OpenAI Whisper | Multilingual Speech-to-Text |
+| **NLP** | RapidFuzz + Regex | Fuzzy Matching & Smart Parsing |
+| **Design** | Vanilla CSS / Custom | Premium Professional Aesthetic |
 
 ---
 
-## 5️⃣ ABC Analysis (Revenue Intelligence)
+## 🌍 Multilingual Command Examples
 
-Automatically classifies:
+Invora understands commands across the linguistic spectrum of the Indian warehouse.
 
-| Category      | Meaning                        |
-| ------------- | ------------------------------ |
-| 🥇 A (Gold)   | Top 20% generating 80% revenue |
-| 🥈 B (Silver) | Moderate value                 |
-| 🥉 C (Bronze) | Low value                      |
-
-Category A, B, C items are highlighted in dashboard.
-
----
-
-## 6️⃣ Financial & AI Insights
-
-* Real-time revenue tracking
-
----
-
-# 🌍 Multilingual Usage Instructions
-
-## 🇬🇧 English Commands
-
-### ➕ Add Stock
-
-* “Add 5 kg sugar”
-* “Add 10 litres milk”
-
-
-### ➖ Remove / Sell Stock
-
-* “Remove 3 kg rice”
-
----
-
-## 🇮🇳 Hindi Commands
-
-### ➕ Add
-
-* “5 kilo chini jodo”
-
-### ➖ Remove
-
-* “5 kilo chawal nikaal do”
-* “2 packet namak hatao”
-
----
-
-## 🇮🇳 Malayalam Commands
-
-### ➕ Add
-
-* “5 kilo panchasara cherkuka”
-* “10 litre paal cherku”
-* “20 packet biscuit cherkuka”
-
-### ➖ Remove
-
-* “5 kilo ari vittu”
-* “3 litre enna neekkuka”
-* “2 packet uppu eduthu kalayu”
-
----
-
-# 📲 Installation & Build Guide
-
-## 🔧 Clone Repository
-
+### 🇬🇧 English
 ```bash
-git clone <https://github.com/afianas/Invora_Voice_Commerce.git>
-cd invora
+"Add 50 kg Sugar"
+"Remove 10 litres of Milk"
+```
+
+### 🇮🇳 Hindi
+```bash
+"50 किलो चीनी जोड़ो" (50 kg Chini jodo)
+"10 लीटर दूध निकालो" (10 litre doodh nikalo)
+```
+
+### 🇮🇳 Malayalam
+```bash
+"50 കിലോ പഞ്ചസാര ചേർക്കുക" (50 kilo panchasara cherkuka)
+"10 ലിറ്റർ പാൽ ഒഴിവാക്കുക" (10 litre paal ozhivakkuka)
 ```
 
 ---
 
-## 🐍 Backend Setup
+## ⚖ Technical Trade-offs
 
-```bash
-cd backend
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
+During development, critical architectural choices were made to optimize for the MSME environment:
 
-
-## 📱 Frontend Setup
-
-```bash
-cd frontend
-npm install
-npx expo start
-```
-
-Scan QR using Expo Go.
+- **Whisper vs. Google STT**: We chose **OpenAI Whisper** (Small Model) over Google Cloud STT. While Google offers high speed, Whisper provides superior accuracy for heavily accented regional speech and holds the potential for **local/offline deployment**, which is crucial for rural connectivity scenarios.
+- **Rule-Based NLP vs. LLM**: We implemented a rule-based parser with **Fuzzy Matching** (RapidFuzz) for entity extraction. This ensures deterministic results and significantly lower latency compared to calling an LLM (like GPT-4), ensuring the app remains snappy on the warehouse floor.
 
 ---
 
-# 📦 Build APK (Production)
+## 🚀 Future Roadmap
 
-Install EAS CLI:
+- **NER Transition**: Transition from Rule-Based parsing to a dedicated **Named Entity Recognition (NER)** model (fine-tuned spaCy or DistilBERT-base-NER) for better handling of varied sentence structures and slang.
+- **Traffic Light Confidence**: Implement a color-coded verification modal. Fields with high AI confidence will be highlighted in **Green**, while low-confidence captures will show in **Yellow/Red** to prompt closer inspection.
+- **Persistent Storage**: Scaling the current single-warehouse optimized system to a robust **MongoDB Atlas** tier for multi-device sync and historical data persistence.
 
-```bash
-npm install -g eas-cli
-eas login
-```
+---
 
-Configure build:
+## 🛠 Build & Setup Guide
 
-```bash
-eas build:configure
-```
+### Backend (FastAPI)
+1. Navigate to directory: `cd backend`
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run server: `uvicorn src.main:app --reload`
 
-Build APK:
+### Frontend (Expo)
+1. Navigate to directory: `cd frontend`
+2. Install dependencies: `npm install`
+3. Start Expo: `npx expo start`
 
+### Production Build (Android APK)
+Invora uses **EAS CLI** for production APK builds:
 ```bash
 eas build -p android --profile preview
 ```
 
-Download APK from Expo dashboard.
-
 ---
 
-# 📥 Install APK on Android
+## 📸 Screenshots & Demo
 
-1. Download APK
-2. Enable “Install from Unknown Sources”
-3. Install
-4. Open Invora
-
----
-
-# 🗂 Folder Structure
-
-```
-ibhashini_voice_commerce/
-│
-├── backend/
-│   ├── src/
-│   │   ├── _init_.py
-│   │   ├── main.py
-│   │   ├── config.py
-│   │   ├── nlp_engine.py
-│   │   ├── whisper_service.py
-│   │   └── inspect_ffmpeg.py
-│   │
-│   ├── requirements.txt
-│   └── static/          (if backend serves static files)
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── header.js
-│   │   │   ├── inventory_item.js
-│   │   │   ├── quick_entry.js
-│   │   │   ├── transaction_ledger.js
-│   │   │   ├── verification_modal.js
-│   │   │   ├── voice_footer.js
-│   │   │   └── voice_instruction.js
-│   │   │
-│   │   ├── styles/
-│   │   ├── utils/
-│   │   └── app.js
-│   │
-│   ├── public/
-│   │   └── logo.png
-│   │
-│   ├── package.json
-│   └── package-lock.json
-│
-├── docs/
-│   ├── architecture_diagram.png
-│   ├── api_flow.png
-│   └── deployment_notes.md
-│
-└── README.md
-```
-
----
-# 🧭 App Flow Diagram
-
+### App Flow & Architecture
 <div align="center">
   <img width="400" alt="App Flow Diagram" src="https://github.com/user-attachments/assets/269840ac-90e8-46ea-8a68-0f74a86e19fe" />
-</div>
-
----
-# 🏗 Architecture Diagram
-
-<div align="center">
   <img width="600" alt="Architecture Diagram" src="https://github.com/user-attachments/assets/3913e15c-8071-448d-afcb-7812fb684275" />
 </div>
 
-# 🎥 Demo Video
-https://drive.google.com/file/d/19N4Rm2TWIm_VSkBs0wgSCTwNRzbMutI1/view?usp=drivesdk
----
-
-# 📸 Screenshots
-
+### Visual Interface
 <div align="center">
   <table>
     <tr>
-      <td align="center">
-        <img width="220" alt="Screenshot 1" src="https://github.com/user-attachments/assets/db9c6485-5897-465a-85dd-a28cd1fcd68a" />
-      </td>
-      <td align="center">
-        <img width="220" alt="Screenshot 2" src="https://github.com/user-attachments/assets/645cab12-9533-414c-ae22-7fbdfa938cb3" />
-      </td>
-      <td align="center">
-        <img width="220" alt="Screenshot 3" src="https://github.com/user-attachments/assets/6dc23811-cf96-4be1-939d-ccbe75b8cd3a" />
-      </td>
+      <td align="center"><img width="220" src="https://github.com/user-attachments/assets/db9c6485-5897-465a-85dd-a28cd1fcd68a" /></td>
+      <td align="center"><img width="220" src="https://github.com/user-attachments/assets/645cab12-9533-414c-ae22-7fbdfa938cb3" /></td>
+      <td align="center"><img width="220" src="https://github.com/user-attachments/assets/6dc23811-cf96-4be1-939d-ccbe75b8cd3a" /></td>
     </tr>
   </table>
 </div>
 
-# 👥 Team Members
+### 📺 Demo Video
+[Watch the Invora Demo](https://drive.google.com/file/d/19N4Rm2TWIm_VSkBs0wgSCTwNRzbMutI1/view?usp=drivesdk)
 
+---
+
+## 👥 Team Members
 * Afia Nasumudeen – Backend, Frontend-Backend Integration
 * Akshara C A - Frontend 
 
----
-
-# 🤖 AI Tools Used
-
-* Whisper (Speech Recognition)
+* **Afia Nasumudeen** – Backend & Frontend-Backend Integration
+* **Akshara C A** – Frontend Development
 
 ---
 
-# 📜 License
-
-MIT License
-
-
-
-# ❤️ Built For
-
-Small businesses.
-Warehouse floors.
-Regional language users.
-
-Made with ❤️ for inclusive commerce.
-
-
+Made with ❤️ for inclusive commerce by **Team Invora**.

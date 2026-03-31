@@ -140,7 +140,7 @@ export default function App() {
       const languageMap = { EN: "en", हिं: "hi", ത: "ml" };
       formData.append("language", languageMap[lang] || "en");
 
-      const response = await fetch("https://isis-vigintillionth-genially.ngrok-free.dev/process-audio", {
+      const response = await fetch("https://cherly-rebellious-fructiferously.ngrok-free.dev/process-audio", {
         method: "POST",
         body: formData,
       });
